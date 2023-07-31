@@ -1,4 +1,4 @@
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "http://localhost:4000";
 
 function checkResult(res) {
   if (res.ok) {
@@ -31,6 +31,7 @@ export function getToken(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
