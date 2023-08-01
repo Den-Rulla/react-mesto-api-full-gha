@@ -11,11 +11,11 @@ class Api {
   }
 
   getInitialCards() {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => {
@@ -24,11 +24,11 @@ class Api {
   }
 
   addCard({ name, link }) {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -39,55 +39,55 @@ class Api {
   }
 
   deleteCard(cardId) {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this._checkResult(res));
   }
 
   addLike(cardId) {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this._checkResult(res));
   }
 
   deleteLike(cardId) {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this._checkResult(res));
   }
 
   getUserInfo() {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this._checkResult(res));
   }
 
   editUserInfo({ name, about }) {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -98,11 +98,11 @@ class Api {
   }
 
   editUserAvatar({ avatar }) {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        "authorization": `Bearer ${jwt}`,
+        "authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -115,7 +115,7 @@ class Api {
 export const api = new Api({
   baseUrl: "http://localhost:4000",
   // headers: {
-  //   // "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
+  //   // "Authorization": `Bearer ${localStorage.getItem('token')}`,
   //   "Content-Type": "application/json",
   // },
 });

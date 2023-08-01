@@ -80,7 +80,7 @@ function App() {
   }
 
   function handleLikeClick(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((id) => id === currentUser._id);
 
     if (isLiked) {
       api
@@ -202,10 +202,11 @@ function App() {
       auth
         .getToken(token)
         .then((res) => {
+          console.log(res.email);
           if (res) {
             setIsLogged(true);
             navigate("/cards", { replace: true });
-            setUserEmail(res.data.email);
+            setUserEmail(res.email);
           }
         })
         .catch((err) => {

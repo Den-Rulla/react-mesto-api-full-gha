@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -5,6 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { errors } = require('celebrate');
 const errorHandler = require('./middlewares/error-handler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const routes = require('./routes/index');
 
@@ -19,11 +22,23 @@ mongoose
 
 const app = express();
 
+console.log(process.env.NODE_ENV);
+
 app.use(cors({ origin: 'http://localhost:3000' }));
 
-app.use(cookieParser());
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser());
+
+app.use(requestLogger);
+app.use(errorLogger);
 
 app.use(routes);
 
