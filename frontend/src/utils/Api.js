@@ -113,7 +113,8 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "http://localhost:4000",
+  baseUrl: "https://api.rda-mesto.nomoreparties.co",
+  // baseUrl: "http://localhost:4000",
   // headers: {
   //   // "Authorization": `Bearer ${localStorage.getItem('token')}`,
   //   "Content-Type": "application/json",
