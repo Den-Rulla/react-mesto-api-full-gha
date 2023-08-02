@@ -38,9 +38,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(requestLogger);
-app.use(errorLogger);
 
 app.use(routes);
+
+app.use(errorLogger);
 
 app.use(errors());
 
