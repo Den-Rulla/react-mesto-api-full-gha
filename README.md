@@ -7,7 +7,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.118.83
+IP <158.160.118.83>
 
 Frontend https://rda-mesto.nomoreparties.co/
 
